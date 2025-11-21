@@ -1,0 +1,392 @@
+{
+  "machine_learning": {
+    "title": "Machine Learning",
+    "category": "AI/ML",
+    "definition": "Machine Learning is a subset of artificial intelligence that enables systems to learn and improve from experience without being explicitly programmed. It uses algorithms and statistical models to analyze and draw inferences from patterns in data.",
+    "key_concepts": [
+      "Supervised Learning",
+      "Unsupervised Learning",
+      "Reinforcement Learning",
+      "Deep Learning",
+      "Feature Engineering",
+      "Model Training",
+      "Overfitting and Underfitting"
+    ],
+    "examples": [
+      {
+        "name": "Linear Regression",
+        "description": "A supervised learning algorithm for predicting continuous values based on input features",
+        "code": "from sklearn.linear_model import LinearRegression\nimport numpy as np\n\n# Create sample data\nX = np.array([[1], [2], [3], [4], [5]])\ny = np.array([2, 4, 5, 4, 5])\n\n# Train model\nmodel = LinearRegression()\nmodel.fit(X, y)\n\n# Make predictions\npredictions = model.predict([[6], [7]])\nprint(predictions)",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Decision Tree Classification",
+        "description": "A tree-based model for making decisions based on asking a series of questions",
+        "code": "from sklearn.tree import DecisionTreeClassifier\nfrom sklearn.datasets import load_iris\n\n# Load data\niris = load_iris()\nX, y = iris.data, iris.target\n\n# Train classifier\nclf = DecisionTreeClassifier(max_depth=3)\nclf.fit(X, y)\n\n# Predict\npredictions = clf.predict(X[:5])\nprint(predictions)",
+        "difficulty": "intermediate"
+      }
+    ],
+    "practice_problems": [
+      {
+        "question": "What is the main difference between supervised and unsupervised learning?",
+        "answer": "Supervised learning uses labeled data with known outputs to train models, while unsupervised learning finds patterns in unlabeled data without predefined outcomes.",
+        "difficulty": "easy"
+      },
+      {
+        "question": "Implement a simple linear regression model using scikit-learn to predict house prices",
+        "answer": "Use LinearRegression() class, prepare your data with features (X) and target (y), fit the model with model.fit(X, y), and make predictions with model.predict(X_new)",
+        "difficulty": "medium"
+      }
+    ],
+    "resources": [
+      "https://scikit-learn.org/stable/tutorial/index.html",
+      "https://www.coursera.org/learn/machine-learning",
+      "https://www.kaggle.com/learn/intro-to-machine-learning"
+    ],
+    "prerequisites": [
+      "Python Programming",
+      "Basic Statistics",
+      "Linear Algebra"
+    ],
+    "related_topics": [
+      "deep_learning",
+      "neural_networks",
+      "data_science"
+    ],
+    "last_updated": "2025-11-11T21:08:19.932880"
+  },
+  "neural_networks": {
+    "title": "Neural Networks",
+    "category": "AI/ML",
+    "definition": "Neural Networks are computing systems inspired by biological neural networks. They consist of interconnected nodes (neurons) organized in layers that can learn to recognize patterns and make decisions based on input data.",
+    "key_concepts": [
+      "Perceptron",
+      "Layers (Input, Hidden, Output)",
+      "Weights and Biases",
+      "Forward Propagation",
+      "Backpropagation",
+      "Gradient Descent",
+      "Activation Functions"
+    ],
+    "examples": [
+      {
+        "name": "Simple Perceptron",
+        "description": "The simplest form of a neural network with one layer",
+        "code": "import numpy as np\n\nclass Perceptron:\n    def __init__(self, input_size, learning_rate=0.01):\n        self.weights = np.random.randn(input_size)\n        self.bias = 0\n        self.lr = learning_rate\n    \n    def predict(self, x):\n        return 1 if np.dot(x, self.weights) + self.bias > 0 else 0\n    \n    def train(self, X, y, epochs=100):\n        for _ in range(epochs):\n            for xi, yi in zip(X, y):\n                prediction = self.predict(xi)\n                error = yi - prediction\n                self.weights += self.lr * error * xi\n                self.bias += self.lr * error\n\n# Usage\nperceptron = Perceptron(input_size=2)\n# perceptron.train(X_train, y_train)",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Multi-Layer Neural Network",
+        "description": "A complete neural network with multiple layers",
+        "code": "import numpy as np\n\nclass NeuralNetwork:\n    def __init__(self, layers):\n        self.weights = []\n        self.biases = []\n        for i in range(len(layers)-1):\n            self.weights.append(np.random.randn(layers[i], layers[i+1]))\n            self.biases.append(np.zeros((1, layers[i+1])))\n    \n    def sigmoid(self, x):\n        return 1 / (1 + np.exp(-x))\n    \n    def forward(self, X):\n        self.activations = [X]\n        for w, b in zip(self.weights, self.biases):\n            X = self.sigmoid(np.dot(X, w) + b)\n            self.activations.append(X)\n        return X\n\n# Create a 3-layer network\nnn = NeuralNetwork([2, 4, 1])",
+        "difficulty": "advanced"
+      }
+    ],
+    "practice_problems": [
+      {
+        "question": "Explain backpropagation in simple terms",
+        "answer": "Backpropagation is the process of calculating gradients by propagating errors backward through the network layers. It computes how much each weight contributed to the error and adjusts weights to minimize future errors using the chain rule of calculus.",
+        "difficulty": "medium"
+      },
+      {
+        "question": "What is the vanishing gradient problem?",
+        "answer": "The vanishing gradient problem occurs when gradients become extremely small during backpropagation in deep networks, making it difficult for early layers to learn. This is often caused by activation functions like sigmoid or tanh.",
+        "difficulty": "hard"
+      }
+    ],
+    "resources": [
+      "http://neuralnetworksanddeeplearning.com/",
+      "https://playground.tensorflow.org/",
+      "https://www.3blue1brown.com/topics/neural-networks"
+    ],
+    "prerequisites": [
+      "Basic Calculus",
+      "Linear Algebra",
+      "Python Programming"
+    ],
+    "related_topics": [
+      "deep_learning",
+      "machine_learning",
+      "backpropagation"
+    ],
+    "last_updated": "2025-11-11T21:08:19.932880"
+  },
+  "python_programming": {
+    "title": "Python Programming",
+    "category": "Programming",
+    "definition": "Python is a high-level, interpreted programming language known for its clear syntax and readability. It's widely used in data science, machine learning, web development, automation, and scientific computing.",
+    "key_concepts": [
+      "Variables and Data Types",
+      "Control Flow (if, for, while)",
+      "Functions and Modules",
+      "Lists and Dictionaries",
+      "Object-Oriented Programming",
+      "File Handling",
+      "Exception Handling"
+    ],
+    "examples": [
+      {
+        "name": "Basic Python Functions",
+        "description": "Creating and using functions in Python",
+        "code": "# Define a function\ndef greet(name):\n    return f'Hello, {name}!'\n\n# Function with default parameters\ndef calculate_area(length, width=10):\n    return length * width\n\n# Lambda function\nsquare = lambda x: x ** 2\n\n# Usage\nprint(greet('Alice'))  # Hello, Alice!\nprint(calculate_area(5))  # 50\nprint(square(4))  # 16",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "List Comprehensions",
+        "description": "Efficient way to create lists in Python",
+        "code": "# Basic list comprehension\nsquares = [x**2 for x in range(10)]\n\n# With condition\neven_squares = [x**2 for x in range(10) if x % 2 == 0]\n\n# Nested comprehension\nmatrix = [[i+j for j in range(3)] for i in range(3)]\n\n# Dictionary comprehension\nsquare_dict = {x: x**2 for x in range(5)}\n\nprint(squares)  # [0, 1, 4, 9, 16, ...]\nprint(even_squares)  # [0, 4, 16, 36, 64]",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Classes and OOP",
+        "description": "Object-oriented programming in Python",
+        "code": "class Student:\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n        self.grades = []\n    \n    def add_grade(self, grade):\n        self.grades.append(grade)\n    \n    def get_average(self):\n        return sum(self.grades) / len(self.grades) if self.grades else 0\n    \n    def __str__(self):\n        return f'{self.name}, Age: {self.age}'\n\n# Usage\nstudent = Student('Alice', 20)\nstudent.add_grade(85)\nstudent.add_grade(90)\nprint(student)  # Alice, Age: 20\nprint(f'Average: {student.get_average()}')  # Average: 87.5",
+        "difficulty": "intermediate"
+      }
+    ],
+    "practice_problems": [
+      {
+        "question": "Write a function that takes a list of numbers and returns the sum of even numbers",
+        "answer": "def sum_even(numbers):\n    return sum(n for n in numbers if n % 2 == 0)\n\n# Or using filter:\ndef sum_even(numbers):\n    return sum(filter(lambda x: x % 2 == 0, numbers))",
+        "difficulty": "easy"
+      },
+      {
+        "question": "Create a class called 'BankAccount' with deposit and withdraw methods",
+        "answer": "class BankAccount:\n    def __init__(self, balance=0):\n        self.balance = balance\n    \n    def deposit(self, amount):\n        self.balance += amount\n        return self.balance\n    \n    def withdraw(self, amount):\n        if amount <= self.balance:\n            self.balance -= amount\n            return self.balance\n        return 'Insufficient funds'",
+        "difficulty": "medium"
+      }
+    ],
+    "resources": [
+      "https://docs.python.org/3/tutorial/",
+      "https://realpython.com/",
+      "https://www.learnpython.org/",
+      "https://www.pythoncheatsheet.org/"
+    ],
+    "prerequisites": [
+      "Basic Computer Knowledge"
+    ],
+    "related_topics": [
+      "data_science",
+      "machine_learning",
+      "web_development"
+    ],
+    "last_updated": "2025-11-11T21:08:19.932880"
+  },
+  "data_science": {
+    "title": "Data Science",
+    "category": "Data",
+    "definition": "Data Science is an interdisciplinary field that uses scientific methods, processes, algorithms, and systems to extract knowledge and insights from structured and unstructured data. It combines statistics, data analysis, machine learning, and domain expertise.",
+    "key_concepts": [
+      "Data Collection and Cleaning",
+      "Exploratory Data Analysis (EDA)",
+      "Statistical Analysis",
+      "Data Visualization",
+      "Machine Learning",
+      "Feature Engineering",
+      "Big Data Technologies"
+    ],
+    "examples": [
+      {
+        "name": "Data Analysis with Pandas",
+        "description": "Basic data manipulation and analysis using pandas",
+        "code": "import pandas as pd\nimport numpy as np\n\n# Create DataFrame\ndata = {\n    'name': ['Alice', 'Bob', 'Charlie', 'David'],\n    'age': [25, 30, 35, 28],\n    'score': [85, 90, 95, 88],\n    'city': ['NY', 'LA', 'NY', 'LA']\n}\ndf = pd.DataFrame(data)\n\n# Basic operations\nprint(df.describe())  # Statistical summary\nprint(df[df['age'] > 25])  # Filter rows\nprint(df.groupby('city')['score'].mean())  # Group by\n\n# Add new column\ndf['grade'] = df['score'].apply(lambda x: 'A' if x >= 90 else 'B')",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Data Visualization with Matplotlib",
+        "description": "Creating visualizations for data analysis",
+        "code": "import matplotlib.pyplot as plt\nimport pandas as pd\n\n# Sample data\ndata = pd.DataFrame({\n    'month': ['Jan', 'Feb', 'Mar', 'Apr', 'May'],\n    'sales': [100, 150, 200, 180, 250]\n})\n\n# Line plot\nplt.figure(figsize=(10, 6))\nplt.plot(data['month'], data['sales'], marker='o')\nplt.title('Monthly Sales')\nplt.xlabel('Month')\nplt.ylabel('Sales ($)')\nplt.grid(True)\nplt.show()\n\n# Bar plot\nplt.bar(data['month'], data['sales'])\nplt.title('Sales by Month')\nplt.show()",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Statistical Analysis",
+        "description": "Performing statistical tests and analysis",
+        "code": "import numpy as np\nfrom scipy import stats\n\n# Sample data\ngroup1 = np.random.normal(100, 15, 50)\ngroup2 = np.random.normal(110, 15, 50)\n\n# Descriptive statistics\nprint(f'Mean: {np.mean(group1):.2f}')\nprint(f'Median: {np.median(group1):.2f}')\nprint(f'Std Dev: {np.std(group1):.2f}')\n\n# T-test\nt_stat, p_value = stats.ttest_ind(group1, group2)\nprint(f'T-statistic: {t_stat:.2f}')\nprint(f'P-value: {p_value:.4f}')\n\n# Correlation\ncorrelation = np.corrcoef(group1, group2)[0, 1]\nprint(f'Correlation: {correlation:.2f}')",
+        "difficulty": "advanced"
+      }
+    ],
+    "practice_problems": [
+      {
+        "question": "What is the difference between mean, median, and mode?",
+        "answer": "Mean is the average of all values (sum/count). Median is the middle value when data is sorted (50th percentile). Mode is the most frequently occurring value. Mean is sensitive to outliers, while median is more robust.",
+        "difficulty": "easy"
+      },
+      {
+        "question": "How do you handle missing data in a dataset?",
+        "answer": "Common approaches: 1) Remove rows with missing values (if small percentage), 2) Fill with mean/median/mode, 3) Forward/backward fill for time series, 4) Use interpolation, 5) Predict missing values using ML models. Choice depends on data type and amount of missing data.",
+        "difficulty": "medium"
+      },
+      {
+        "question": "Explain the concept of data normalization and why it's important",
+        "answer": "Data normalization scales features to a common range (e.g., 0-1 or standardized). It's important because: 1) Algorithms converge faster, 2) Prevents features with large ranges from dominating, 3) Improves model performance, 4) Required for distance-based algorithms like KNN.",
+        "difficulty": "medium"
+      }
+    ],
+    "resources": [
+      "https://www.kaggle.com/learn/intro-to-data-science",
+      "https://pandas.pydata.org/docs/getting_started/tutorials.html",
+      "https://www.datacamp.com/courses/intro-to-python-for-data-science",
+      "https://towardsdatascience.com/"
+    ],
+    "prerequisites": [
+      "Python Programming",
+      "Basic Statistics",
+      "Mathematics"
+    ],
+    "related_topics": [
+      "machine_learning",
+      "statistics",
+      "data_visualization"
+    ],
+    "last_updated": "2025-11-11T21:08:19.932880"
+  },
+  "natural_language_processing": {
+    "title": "Natural Language Processing",
+    "category": "AI/ML",
+    "definition": "Natural Language Processing (NLP) is a branch of artificial intelligence that focuses on the interaction between computers and humans through natural language. It enables computers to understand, interpret, and generate human language in a valuable way.",
+    "key_concepts": [
+      "Tokenization",
+      "Text Preprocessing",
+      "Word Embeddings",
+      "Named Entity Recognition (NER)",
+      "Sentiment Analysis",
+      "Language Models",
+      "Transformers and BERT"
+    ],
+    "examples": [
+      {
+        "name": "Text Preprocessing",
+        "description": "Basic text cleaning and preprocessing",
+        "code": "import re\nimport nltk\nfrom nltk.corpus import stopwords\nfrom nltk.tokenize import word_tokenize\n\n# Download required data\nnltk.download('punkt')\nnltk.download('stopwords')\n\ntext = \"This is an EXAMPLE sentence, showing text preprocessing!\"\n\n# Convert to lowercase\ntext = text.lower()\n\n# Remove punctuation\ntext = re.sub(r'[^\\w\\s]', '', text)\n\n# Tokenize\ntokens = word_tokenize(text)\n\n# Remove stopwords\nstop_words = set(stopwords.words('english'))\nfiltered_tokens = [w for w in tokens if w not in stop_words]\n\nprint(filtered_tokens)  # ['example', 'sentence', 'showing', 'text', 'preprocessing']",
+        "difficulty": "beginner"
+      },
+      {
+        "name": "Sentiment Analysis",
+        "description": "Analyzing sentiment of text using transformers",
+        "code": "from transformers import pipeline\n\n# Load sentiment analysis pipeline\nsentiment_analyzer = pipeline('sentiment-analysis')\n\n# Analyze sentiment\ntexts = [\n    \"I love this product! It's amazing!\",\n    \"This is terrible, worst purchase ever.\",\n    \"It's okay, nothing special.\"\n]\n\nfor text in texts:\n    result = sentiment_analyzer(text)[0]\n    print(f\"Text: {text}\")\n    print(f\"Sentiment: {result['label']}, Score: {result['score']:.2f}\\n\")",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Named Entity Recognition",
+        "description": "Extracting entities from text",
+        "code": "import spacy\n\n# Load spacy model\nnlp = spacy.load('en_core_web_sm')\n\ntext = \"Apple Inc. was founded by Steve Jobs in Cupertino, California.\"\n\n# Process text\ndoc = nlp(text)\n\n# Extract entities\nfor ent in doc.ents:\n    print(f\"{ent.text}: {ent.label_}\")\n\n# Output:\n# Apple Inc.: ORG\n# Steve Jobs: PERSON\n# Cupertino: GPE\n# California: GPE",
+        "difficulty": "advanced"
+      }
+    ],
+    "practice_problems": [
+      {
+        "question": "What is tokenization and why is it important in NLP?",
+        "answer": "Tokenization is the process of breaking text into smaller units (tokens) like words or sentences. It's important because it's the first step in text processing, converting unstructured text into structured data that algorithms can process.",
+        "difficulty": "easy"
+      },
+      {
+        "question": "Explain the difference between word embeddings and one-hot encoding",
+        "answer": "One-hot encoding represents words as sparse vectors with only one '1' and rest '0's, losing semantic relationships. Word embeddings (like Word2Vec, GloVe) represent words as dense vectors that capture semantic meaning, allowing similar words to have similar representations.",
+        "difficulty": "medium"
+      }
+    ],
+    "resources": [
+      "https://huggingface.co/course/chapter1",
+      "https://www.nltk.org/book/",
+      "https://spacy.io/usage/spacy-101",
+      "https://www.tensorflow.org/tutorials/text/word_embeddings"
+    ],
+    "prerequisites": [
+      "Python Programming",
+      "Machine Learning",
+      "Basic Linguistics"
+    ],
+    "related_topics": [
+      "machine_learning",
+      "deep_learning",
+      "transformers"
+    ],
+    "last_updated": "2025-11-11T21:08:19.932880"
+  },
+  "algorithms": {
+    "title": "Algorithms and Data Structures",
+    "category": "Computer Science",
+    "definition": "Algorithms are step-by-step procedures for solving problems, while data structures are ways of organizing and storing data efficiently. Together, they form the foundation of computer science and software engineering.",
+    "key_concepts": [
+      "Time and Space Complexity",
+      "Sorting Algorithms",
+      "Searching Algorithms",
+      "Graph Algorithms",
+      "Dynamic Programming",
+      "Arrays and Linked Lists",
+      "Trees and Graphs"
+    ],
+    "examples": [
+      {
+        "name": "Binary Search",
+        "description": "Efficient searching in sorted arrays",
+        "code": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if arr[mid] == target:\n            return mid  # Found\n        elif arr[mid] < target:\n            left = mid + 1  # Search right half\n        else:\n            right = mid - 1  # Search left half\n    \n    return -1  # Not found\n\n# Usage\narr = [1, 3, 5, 7, 9, 11, 13]\nresult = binary_search(arr, 7)\nprint(f'Found at index: {result}')  # Found at index: 3",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Quick Sort",
+        "description": "Efficient divide-and-conquer sorting algorithm",
+        "code": "def quick_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    \n    return quick_sort(left) + middle + quick_sort(right)\n\n# Usage\narr = [3, 6, 8, 10, 1, 2, 1]\nsorted_arr = quick_sort(arr)\nprint(sorted_arr)  # [1, 1, 2, 3, 6, 8, 10]",
+        "difficulty": "intermediate"
+      },
+      {
+        "name": "Depth-First Search (DFS)",
+        "description": "Graph traversal algorithm",
+        "code": "def dfs(graph, start, visited=None):\n    if visited is None:\n        visited = set()\n    \n    visited.add(start)\n    print(start, end=' ')\n    \n    for neighbor in graph[start]:\n        if neighbor not in visited:\n            dfs(graph, neighbor, visited)\n    \n    return visited\n\n# Usage\ngraph = {\n    'A': ['B', 'C'],\n    'B': ['D', 'E'],\n    'C': ['F'],\n    'D': [],\n    'E': ['F'],\n    'F': []\n}\n\ndfs(graph, 'A')  # Output: A B D E F C",
+        "difficulty": "advanced"
+      }
+    ],
+    "practice_problems": [
+      {
+        "question": "What is Big O notation and why is it important?",
+        "answer": "Big O notation describes the upper bound of an algorithm's time or space complexity as input size grows. It's important for comparing algorithm efficiency and predicting performance. Common complexities: O(1) constant, O(log n) logarithmic, O(n) linear, O(n²) quadratic.",
+        "difficulty": "medium"
+      },
+      {
+        "question": "Implement a function to reverse a linked list",
+        "answer": "def reverse_linked_list(head):\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev",
+        "difficulty": "medium"
+      }
+    ],
+    "resources": [
+      "https://www.geeksforgeeks.org/fundamentals-of-algorithms/",
+      "https://leetcode.com/",
+      "https://www.hackerrank.com/domains/algorithms",
+      "https://visualgo.net/en"
+    ],
+    "prerequisites": [
+      "Python Programming",
+      "Basic Mathematics"
+    ],
+    "related_topics": [
+      "programming",
+      "problem_solving",
+      "computer_science"
+    ],
+    "last_updated": "2025-11-11T21:08:19.932880"
+  },
+  "computer_vision": {
+    "title": "Computer Vision",
+    "category": "AI/ML",
+    "definition": "Computer Vision is a field of AI that enables computers to interpret and understand visual information from the world.",
+    "key_concepts": [
+      "Image Processing",
+      "Object Detection",
+      "Image Classification"
+    ],
+    "examples": [],
+    "practice_problems": [],
+    "resources": [
+      "https://opencv.org/"
+    ],
+    "prerequisites": [
+      "Python Programming",
+      "Deep Learning"
+    ],
+    "related_topics": [
+      "deep_learning",
+      "machine_learning"
+    ],
+    "last_updated": "2025-11-11T21:08:19.936970"
+  }
+}
