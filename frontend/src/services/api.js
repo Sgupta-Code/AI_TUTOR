@@ -6,7 +6,7 @@
 import axios from "axios";
 
 // Base URL (Vite uses import.meta.env instead of process.env)
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://celinda-undeft-badgeringly.ngrok-free.dev";
 
 // Axios instance
 const api = axios.create({
@@ -120,3 +120,4 @@ const apiService = {
 };
 
 export default apiService;
+
