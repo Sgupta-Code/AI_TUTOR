@@ -7,6 +7,31 @@ from datetime import datetime
 import time
 from dotenv import load_dotenv
 load_dotenv()
+import os
+import zipfile
+import gdown  # pip install gdown if not installed
+
+# ===================== DOWNLOAD ML MODELS =====================
+ml_folder = "ml_Models"
+zip_file = "trained_models.zip"
+# Replace with your actual Google Drive file ID
+
+url = "https://drive.google.com/file/d/1cSE903flpP8hcipeVFBq36jRDO_wlIqZ/view?usp=drive_link"
+
+# Download and unzip only if folder doesn't exist
+if not os.path.exists(ml_folder):
+    print("Downloading trained models from Google Drive...")
+    gdown.download(url, zip_file, quiet=False)
+
+    print("Unzipping trained models...")
+    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+        zip_ref.extractall(ml_folder)
+
+    os.remove(zip_file)
+    print("Models ready!")
+else:
+    print("ML models already present locally.")
+# ================================================================
 
 
 # Add parent directory to path for imports
@@ -441,4 +466,5 @@ if __name__ == '__main__':
         host='0.0.0.0',
         port=port,
         debug=True  # Set to False in production
+
     )
